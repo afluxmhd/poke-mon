@@ -3,14 +3,14 @@ import 'package:poke_man/screens/home_screen.dart';
 import 'package:poke_man/screens/pokemon_screen.dart';
 import 'package:poke_man/screens/splash_screen.dart';
 
-class RouteHelper {
+class AppRoutes {
   static const String splashPage = "/splash-page";
   static const String initialPage = "/";
   static const String pokemonPage = "/pokemon-page";
 
   static String getSplashScreen() => splashPage;
   static String getInitialScreen(int index) => initialPage;
-  static String getPokemonScreen(int pageId, String page) => '$pokemonPage?pageId=$pageId';
+  static String getPokemonScreen(int pageId) => '$pokemonPage?pageId=$pageId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -21,7 +21,7 @@ class RouteHelper {
     GetPage(
       name: initialPage,
       page: () {
-        return HomeScreen();
+        return const HomeScreen();
       },
     ),
     GetPage(

@@ -1,17 +1,57 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class PokemonModel {
   int id;
   String name;
-  List<String> abilities;
-  String baseExperience;
+  String img;
+  List<dynamic> abilities;
+  int baseExperience;
   int height;
-  int width;
+  int weight;
   PokemonModel({
     required this.id,
     required this.name,
+    required this.img,
     required this.abilities,
     required this.baseExperience,
     required this.height,
-    required this.width,
+    required this.weight,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'img': img,
+      'abilities': abilities,
+      'base_experience': baseExperience,
+      'height': height,
+      'weight': weight,
+    };
+  }
+
+  factory PokemonModel.fromMap(Map<String, dynamic> map) {
+    return PokemonModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      img: map['sprites']['versions']['generation-ii']['crystal']['front_default'],
+      abilities: map['abilities'].map((ability) => ability['ability']['name']).toList(),
+      baseExperience: map['base_experience'] as int,
+      height: map['height'] as int,
+      weight: map['weight'] as int,
+    );
+  }
+
+  factory PokemonModel.fromLocalMap(Map<String, dynamic> map) {
+    return PokemonModel(
+      id: map['id'] as int,
+      name: map['name'] as String,
+      img: map['img'] as String,
+      abilities: map['abilities'] as List<dynamic>,
+      baseExperience: map['base_experience'] as int,
+      height: map['height'] as int,
+      weight: map['weight'] as int,
+    );
+  }
 }
