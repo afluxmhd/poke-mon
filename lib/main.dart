@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:poke_man/routes/app_routes.dart';
-import 'package:poke_man/screens/splash_screen.dart';
 import 'package:poke_man/helper/dependencies.dart' as dep;
 
 void main() async {

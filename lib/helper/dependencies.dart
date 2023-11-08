@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:poke_man/controllers/pokemon_controller.dart';
-import 'package:poke_man/data/api/api_routes.dart';
 import 'package:poke_man/data/repo/pokemon_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/api/api_client.dart';
+import '../data/api/api_routes.dart';
 
 Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();

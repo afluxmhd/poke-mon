@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poke_man/data/repo/pokemon_repo.dart';
 import 'package:poke_man/models/pokemon_model.dart';
+import 'package:poke_man/services/image_service.dart';
 
 class PokemonController extends GetxController {
   final PokemonRepo pokemonRepo;
@@ -23,32 +25,25 @@ class PokemonController extends GetxController {
     bool isLocalStorageDataAvailable = pokemonRepo.checkPokemonLocalStorage();
 
     if (isLocalStorageDataAvailable) {
-      _status = 'fetching from local Strorage';
+      _status = 'Fetching from local Strorage';
       update();
 
       await Future.delayed(const Duration(seconds: 2));
       _pokemonList = await pokemonRepo.getPokemonListFromLocalStorage();
       return true;
     } else {
-      _status = 'fetching from Pokemon Server...';
+      _status = 'Fetching from Pokemon Server...';
       update();
       Response pokemonNameResponse = await pokemonRepo.getPokemonList();
 
       if (pokemonNameResponse.body is Map<String, dynamic>) {
         Map<String, dynamic> pokemonNameData = pokemonNameResponse.body;
-        pokemonNameData.forEach((key, value) {
-          if (key == 'results') {
-            var pokemonNameList = pokemonNameData['results'];
-            if (pokemonNameList is List) {
-              for (var item in pokemonNameList) {
-                if (item is Map<String, dynamic> && item.containsKey('name')) {
-                  var name = item['name'];
-                  _pokemonNameList.add(name);
-                }
-              }
-            }
-          }
-        });
+
+        var pokemonNameList = pokemonNameData['results'];
+        for (var item in pokemonNameList) {
+          var name = item['name'];
+          _pokemonNameList.add(name);
+        }
 
         for (String pokemon in _pokemonNameList) {
           Response pokemonDetailResponse = await pokemonRepo.getPokemonDetails(pokemon);
@@ -60,13 +55,17 @@ class PokemonController extends GetxController {
 
         return true;
       } else {
-        _status = 'Failed to fetch data from the Pokemon server.\nPlease check your internet connection and try again.';
+        _status = 'Please check your internet connection and try again.';
+        update();
         return false;
       }
     }
   }
 
   void clearLocalStorage() {
+    for (String name in _pokemonNameList) {
+      ImageService().deleteImageFromGallery(name);
+    }
     pokemonRepo.clearPokemonLocalStorage();
   }
 }

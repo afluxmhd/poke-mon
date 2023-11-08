@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:poke_man/base/custom_toast.dart';
 import 'package:poke_man/controllers/pokemon_controller.dart';
 import 'package:poke_man/models/pokemon_model.dart';
 import 'package:poke_man/routes/app_routes.dart';
+import 'package:poke_man/services/image_service.dart';
 import 'package:poke_man/widgets/rounded_rectangle_widget.dart';
 import 'package:poke_man/widgets/text_widget.dart';
 import 'package:restart_app/restart_app.dart';
@@ -17,9 +19,28 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: const TextWidget(
-          label: 'Top 10 Pokemon',
-          fontSize: 22,
+        title: Row(
+          children: [
+            const TextWidget(
+              label: 'Top 10 Pokemon',
+              fontSize: 22,
+            ),
+            Container(
+              margin: const EdgeInsets.all(7),
+              width: 70,
+              height: 25,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(156, 68, 137, 255),
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              child: Center(
+                child: TextWidget(
+                    label: Get.find<PokemonController>().status.contains('local') ? 'Local' : 'Server',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+          ],
         ),
         actions: [
           IconButton(
@@ -27,23 +48,27 @@ class HomeScreen extends StatelessWidget {
               Restart.restartApp();
             },
             icon: const Icon(Icons.refresh),
+            tooltip: 'Restart App',
           ),
           IconButton(
             onPressed: () {
               Get.find<PokemonController>().clearLocalStorage();
+              showToast(context, 'Local Storage is deleted!');
             },
             icon: const Icon(Icons.delete_forever),
+            tooltip: 'Delete Local Storage',
           )
         ],
       ),
       body: GetBuilder<PokemonController>(builder: (pokemonController) {
         List<PokemonModel> pokemonList = pokemonController.pokemonList;
-        return _buildListView(pokemonList);
+        String status = pokemonController.status.contains('local') ? 'Local' : 'Server';
+        return _buildListView(pokemonList, status);
       }),
     );
   }
 
-  ListView _buildListView(List<PokemonModel> pokemonList) {
+  ListView _buildListView(List<PokemonModel> pokemonList, String status) {
     return ListView.builder(
       itemCount: pokemonList.length,
       itemBuilder: (context, index) {
@@ -73,11 +98,19 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   child: SizedBox(
-                    child: Image(
-                      image: NetworkImage(
-                        pokemonList[index].img,
-                      ),
-                    ),
+                    child: status == 'Local'
+                        ? ImageService().getImageFromLocalStorage(pokemonList[index].name)
+                        : Image(
+                            image: NetworkImage(
+                              pokemonList[index].img,
+                            ),
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Center(
+                                child:
+                                    TextWidget(label: 'Failed to fetch from Network', fontSize: 10, fontWeight: FontWeight.w400),
+                              );
+                            },
+                          ),
                   ),
                 ),
                 //text section

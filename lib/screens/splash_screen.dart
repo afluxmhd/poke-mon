@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     _loadResources().then((value) {
       if (value) {
-        Get.toNamed(AppRoutes.getInitialScreen(0));
+        Get.toNamed(AppRoutes.getInitialScreen());
       }
     });
     super.initState();

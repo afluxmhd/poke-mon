@@ -9,7 +9,7 @@ class AppRoutes {
   static const String pokemonPage = "/pokemon-page";
 
   static String getSplashScreen() => splashPage;
-  static String getInitialScreen(int index) => initialPage;
+  static String getInitialScreen() => initialPage;
   static String getPokemonScreen(int pageId) => '$pokemonPage?pageId=$pageId';
 
   static List<GetPage> routes = [

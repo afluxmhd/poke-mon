@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:poke_man/data/api/api_client.dart';
-import 'package:poke_man/data/api/api_routes.dart';
+
 import 'package:poke_man/models/pokemon_model.dart';
+import 'package:poke_man/services/image_service.dart';
 import 'package:poke_man/utils/app_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../api/api_client.dart';
+import '../api/api_routes.dart';
 
 class PokemonRepo {
   final ApiClient apiClient;
@@ -16,9 +19,11 @@ class PokemonRepo {
 
   Future<bool> addToPokemonLocalStorage(List<PokemonModel> body) async {
     pokemons = [];
-    pokemons = body.map((e) {
-      return json.encode(e.toMap());
+    pokemons = body.map((pokemon) {
+      _savePokemonImages(pokemon.img, pokemon.name);
+      return json.encode(pokemon.toMap());
     }).toList();
+
     return await sharedPreferences.setStringList(AppKeys.pokemonList, pokemons);
   }
 
@@ -45,6 +50,10 @@ class PokemonRepo {
 
   bool checkPokemonLocalStorage() {
     return sharedPreferences.containsKey(AppKeys.pokemonList);
+  }
+
+  void _savePokemonImages(String imageUrl, String name) async {
+    await ImageService().saveNetworkImageToGallery(imageUrl, name);
   }
 
   // API Calls to Pokemon Server

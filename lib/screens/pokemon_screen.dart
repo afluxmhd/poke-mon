@@ -6,6 +6,8 @@ import 'package:poke_man/controllers/pokemon_controller.dart';
 import 'package:poke_man/widgets/rounded_rectangle_widget.dart';
 import 'package:poke_man/widgets/text_widget.dart';
 
+import '../services/image_service.dart';
+
 class PokemonScreen extends StatefulWidget {
   const PokemonScreen({super.key, required this.pageId});
 
@@ -26,6 +28,7 @@ class _PokemonScreenState extends State<PokemonScreen> {
   @override
   Widget build(BuildContext context) {
     var pokemon = Get.find<PokemonController>().pokemonList[widget.pageId];
+    String status = Get.find<PokemonController>().status.contains('local') ? 'Local' : 'Server';
     return Scaffold(
       body: Column(
         children: [
@@ -36,15 +39,23 @@ class _PokemonScreenState extends State<PokemonScreen> {
                 Positioned(
                   left: 80.w,
                   right: 80.w,
-                  child: Container(
+                  child: SizedBox(
                     height: 300.h,
                     width: 220.w,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(pokemon.img),
-                        fit: BoxFit.contain,
-                      ),
-                    ),
+                    child: status == 'Local'
+                        ? ImageService().getImageFromLocalStorage(pokemon.name)
+                        : Image(
+                            image: NetworkImage(
+                              pokemon.img,
+                            ),
+                            fit: BoxFit.fill,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Center(
+                                child:
+                                    TextWidget(label: 'Failed to fetch from Network', fontSize: 10, fontWeight: FontWeight.w400),
+                              );
+                            },
+                          ),
                   ),
                 ),
                 Positioned(
