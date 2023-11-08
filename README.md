@@ -84,4 +84,16 @@ The following API endpoints are used to fetch Pokemon data:
   Example: https://pokeapi.co/api/v2/pokemon-species/charizard
 
 ## Screenshots
-(Add screenshots of your app here)
+
+<p align="center">
+  <img src="https://github.com/afluxmhd/poke-mon/assets/93920274/a9efca4a-727f-4670-a4d1-bdfa1217863c" width="24%" />
+  <img src="https://github.com/afluxmhd/poke-mon/assets/93920274/aaf23e52-2d0a-44a5-b8d6-3f5e9e2265e2" width="24%" />
+  <img src="https://github.com/afluxmhd/poke-mon/assets/93920274/35d9a94a-ac57-47fb-b391-43ea88b357e6" width="24%" />
+ <img src="https://github.com/afluxmhd/poke-mon/assets/93920274/a008381d-2339-40c6-9155-a7e998cadad1" width="24%" />
+</p>
+
+
+
+
+
+
