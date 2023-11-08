@@ -1,16 +1,87 @@
-# poke_man
+# Pokemon App
 
-A new Flutter project.
+## Project Description
+This Flutter application allows users to retrieve a list of Pokemon characters, view detailed information about each Pokemon, and store the data in a local database for offline access. The app uses the [PokeAPI](https://pokeapi.co/) to fetch Pokemon data.
 
-## Getting Started
+## Contents
+- [Installation](#installation)
+- [Features](#features)
+- [Local Database](#local-database)
+- [API Integration](#api-integration)
+- [Screenshots](#screenshots)
 
-This project is a starting point for a Flutter application.
+## Installation
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository to your local machine:
+```bash
+git clone https://github.com/afluxmhd/poke-mon.git
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Navigate to the project directory:
+```bash
+cd poke-mon
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Install the required dependencies:
+```bash
+flutter pub get
+```
+
+5. Open the project in your preferred Flutter IDE or editor.
+6. Run the app on your connected device or emulator:
+```bash
+flutter run
+```
+
+## Features
+
+### List of 10 Pokemon on Home Screen
+- Displays an initial list of up to 10 Pokemon characters on the home screen.
+
+### Detailed Pokemon Information
+- Provides comprehensive details for each Pokemon, including name, abilities, height, weight, and base experience, accessible by tapping on a Pokemon.
+
+### Offline Access
+- Enables users to access stored Pokemon data without an internet connection, ensuring constant usability.
+
+## Local Database
+
+### What data is stored locally:
+- The local database in the Pokemon Explorer App stores the following data for each Pokemon character:
+- Pokemon Image
+- Name
+- Abilities
+- Height
+- Weight
+- Base Experience
+
+### How users can access Pokemon data without an internet connection:
+- When the app is launched with an internet connection, it fetches data and images from the PokeAPI server and stores this information in the local storage on the user's device. Specifically, it saves:
+- Pokemon images to be displayed.
+- Other relevant data (name, abilities, height, weight, base experience) in a structured format within the local database.
+- On subsequent launches, even without an active internet connection, the app seamlessly falls back to using the locally stored data for each Pokemon. Users can view the details for Pokemon characters without needing an internet connection.
+This offline capability ensures that users of your Pokemon Explorer App can access essential Pokemon details and images even when they are not connected to the internet, making the app more versatile and user-friendly.
+
+## API Integration
+
+### Integration with the PokeAPI
+
+#### Overview
+The Pokemon Explorer App integrates with the [PokeAPI](https://pokeapi.co/) to retrieve data about Pokemon characters. The app communicates with the API by making HTTP requests to specific endpoints. Here is an overview of how API requests are made:
+
+#### API Endpoints
+The following API endpoints are used to fetch Pokemon data:
+
+- Base URL: The base URL for all API requests is set to "https://pokeapi.co/api/v2".
+
+- Pokemon List Endpoint: The app uses the "pokemonListURI" endpoint to retrieve a list of up to 10 Pokemon characters. It appends "?limit=10" to the endpoint to specify the limit of results.                              
+  Endpoint: https://pokeapi.co/api/v2/pokemon?limit=10
+
+- Pokemon Details Endpoint: To fetch detailed information about a specific Pokemon, the app uses the "pokemonURI" endpoint. It appends the Pokemon's name or ID to this endpoint to get data for that specific Pokemon.                          
+  Example: https://pokeapi.co/api/v2/pokemon/charizard
+
+- Pokemon Description Endpoint: For additional information about a Pokemon, such as its Pokedex entries and descriptions, the app uses the "pokemonDescriptionURI" endpoint. The Pokemon's species name or ID is appended to this endpoint to retrieve the relevant data.
+  Example: https://pokeapi.co/api/v2/pokemon-species/charizard
+
+## Screenshots
+(Add screenshots of your app here)
