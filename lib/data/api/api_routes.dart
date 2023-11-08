@@ -8,5 +8,5 @@ class APIRoutes {
   //Endpoints
   static const String pokemonURI = "/pokemon/";
   static const String pokemonListURI = "/pokemon?limit=10"; //retrieving up to 10
-  static const String pokemonDescriptionURI = "pokemon-species"; //retrieving up to 10
+  static const String pokemonDescriptionURI = "pokemon-species";
 }
