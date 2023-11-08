@@ -78,12 +78,12 @@ class _PokemonScreenState extends State<PokemonScreen> {
             child: Stack(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(top: 40, right: 14, left: 14),
-                  decoration: const BoxDecoration(
+                  padding: EdgeInsets.only(top: 40.h, right: 14.w, left: 14.w),
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+                      topLeft: Radius.circular(30.r),
+                      topRight: Radius.circular(30.r),
                     ),
                   ),
                   child: SingleChildScrollView(
@@ -93,7 +93,7 @@ class _PokemonScreenState extends State<PokemonScreen> {
                         Text(
                           'Pokemon',
                           style: GoogleFonts.poppins(
-                            fontSize: 15,
+                            fontSize: 15.sp,
                             color: Colors.grey,
                           ),
                         ),
@@ -102,7 +102,7 @@ class _PokemonScreenState extends State<PokemonScreen> {
                           children: [
                             TextWidget(
                               label: pokemon.name.capitalize!,
-                              fontSize: 22,
+                              fontSize: 22.sp,
                               fontWeight: FontWeight.w600,
                             ),
                             IconButton(
@@ -119,28 +119,28 @@ class _PokemonScreenState extends State<PokemonScreen> {
                         ),
                         SizedBox(height: 5.h),
                         Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor consectetur tortor vitae interdum.',
+                          'Pocket monsters, known as Pokémon, are creatures with various abilities and types, often captured and trained by trainers for battles.',
                           style: GoogleFonts.poppins(
-                            fontSize: 15,
+                            fontSize: 15.sp,
                             color: Colors.grey,
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15.h),
                         Text('Abilities', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         Row(
                           children: [
                             RoundedRectangleWidget(label: pokemon.abilities[0]),
                             RoundedRectangleWidget(label: pokemon.abilities[1]),
                           ],
                         ),
-                        const SizedBox(height: 20),
-                        Text('Base Experience', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 20.h),
+                        Text('Base Experience', style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+                        SizedBox(height: 10.h),
                         RoundedRectangleWidget(label: pokemon.baseExperience.toString()),
-                        const SizedBox(height: 20),
-                        Text('Body Dimensions', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 20.h),
+                        Text('Body Dimensions', style: GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+                        SizedBox(height: 10.h),
                         Row(
                           children: [
                             const TextWidget(label: 'Weight : '),
@@ -160,9 +160,9 @@ class _PokemonScreenState extends State<PokemonScreen> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    width: 50,
-                    height: 5,
+                    margin: EdgeInsets.only(top: 10.h),
+                    width: 50.w,
+                    height: 5.h,
                     decoration: BoxDecoration(
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(50),

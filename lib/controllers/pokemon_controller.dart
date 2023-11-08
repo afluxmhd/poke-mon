@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poke_man/data/repo/pokemon_repo.dart';
 import 'package:poke_man/models/pokemon_model.dart';

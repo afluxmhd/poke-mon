@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:poke_man/controllers/pokemon_controller.dart';
 import 'package:poke_man/routes/app_routes.dart';
-import 'package:poke_man/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -50,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           SizedBox(height: 16.h),
           GetBuilder<PokemonController>(builder: (controller) {
-            return Text(controller.status, style: const TextStyle(fontSize: 12));
+            return Text(controller.status, style: TextStyle(fontSize: 12.sp));
           })
         ],
       ),

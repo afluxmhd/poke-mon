@@ -21,14 +21,14 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            const TextWidget(
+            TextWidget(
               label: 'Top 10 Pokemon',
-              fontSize: 22,
+              fontSize: 22.sp,
             ),
             Container(
               margin: const EdgeInsets.all(7),
-              width: 70,
-              height: 25,
+              width: 70.w,
+              height: 25.h,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(156, 68, 137, 255),
                 borderRadius: BorderRadius.circular(10.r),
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               child: Center(
                 child: TextWidget(
                     label: Get.find<PokemonController>().status.contains('local') ? 'Local' : 'Server',
-                    fontSize: 12,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w400),
               ),
             ),
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14.r),
                     color: Colors.white,
-                    border: Border.all(width: 0.3),
+                    border: Border.all(width: 0.w),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
