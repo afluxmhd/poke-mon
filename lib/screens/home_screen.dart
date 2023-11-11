@@ -78,81 +78,80 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               Get.toNamed(AppRoutes.getPokemonScreen(index));
             },
-            child: Row(
-              children: [
-                //image section
-                Container(
-                  width: 100.w,
-                  height: 100.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14.r),
-                    color: Colors.white,
-                    border: Border.all(width: 0.w),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        offset: const Offset(0, 2),
-                        blurRadius: 10,
-                        spreadRadius: 1,
-                      )
-                    ],
-                  ),
-                  child: SizedBox(
-                    child: status == 'Local'
-                        ? ImageService().getImageFromLocalStorage(pokemonList[index].name)
-                        : Image(
-                            image: NetworkImage(
-                              pokemonList[index].img,
-                            ),
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Center(
-                                child:
-                                    TextWidget(label: 'Failed to fetch from Network', fontSize: 10, fontWeight: FontWeight.w400),
-                              );
-                            },
-                          ),
-                  ),
-                ),
-                //text section
-                Expanded(
-                  child: Container(
-                    height: 82.h,
+            child: Container(
+              padding: EdgeInsets.all(8),
+              height: 100.h,
+              width: 600.w,
+              decoration:
+                  BoxDecoration(color: Colors.white, border: Border.all(width: 0.4), borderRadius: BorderRadius.circular(12.r)),
+              child: Row(
+                children: [
+                  Container(
+                    width: 80.w,
+                    height: 80.h,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20.r),
-                        bottomRight: Radius.circular(20.r),
-                      ),
+                      borderRadius: BorderRadius.circular(14.r),
                       color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          offset: const Offset(0, 2),
-                          blurRadius: 10,
-                          spreadRadius: 1,
-                        )
-                      ],
+                      //border: Border.all(width: 0.w),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.black.withOpacity(0.1),
+                      //     offset: const Offset(0, 2),
+                      //     blurRadius: 10,
+                      //     spreadRadius: 1,
+                      //   )
+                      // ],
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextWidget(
-                            label: pokemonList[index].name.capitalize!,
-                          ),
-                          Row(
-                            children: [
-                              RoundedRectangleWidget(label: pokemonList[index].abilities[0]),
-                              RoundedRectangleWidget(label: pokemonList[index].abilities[1]),
-                            ],
-                          )
-                        ],
-                      ),
+                    child: SizedBox(
+                      child: status == 'Local'
+                          ? ImageService().getImageFromLocalStorage(pokemonList[index].name)
+                          : Image(
+                              image: NetworkImage(
+                                pokemonList[index].img,
+                              ),
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Center(
+                                  child: TextWidget(
+                                      label: 'Failed to fetch from Network', fontSize: 10, fontWeight: FontWeight.w400),
+                                );
+                              },
+                            ),
                     ),
                   ),
-                )
-              ],
+                  const VerticalDivider(
+                    color: Colors.grey,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 82.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20.r),
+                          bottomRight: Radius.circular(20.r),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextWidget(
+                              label: pokemonList[index].name.capitalize!,
+                            ),
+                            Row(
+                              children: [
+                                RoundedRectangleWidget(label: pokemonList[index].abilities[0]),
+                                RoundedRectangleWidget(label: pokemonList[index].abilities[1]),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );
@@ -160,3 +159,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+//                 //text section

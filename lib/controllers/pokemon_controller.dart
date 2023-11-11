@@ -18,6 +18,16 @@ class PokemonController extends GetxController {
   String _status = 'fetching..';
   String get status => _status;
 
+  void addToSaved(PokemonModel savePokemon) {
+    for (int i = 0; i < _pokemonList.length; i++) {
+      if (savePokemon.id == _pokemonList[i].id) {
+        _pokemonList[i] = savePokemon;
+        break;
+      }
+    }
+    update();
+  }
+
   Future<bool> getPokemonList() async {
     _isloading = true;
 
